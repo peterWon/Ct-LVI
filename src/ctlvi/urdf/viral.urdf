@@ -1,0 +1,91 @@
+<robot name="VIRAL">
+  <material name="orange">
+    <color rgba="1.0 0.5 0.2 1" />
+  </material>
+  <material name="gray">
+    <color rgba="0.2 0.2 0.2 1" />
+  </material>
+
+  <link name="imu">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" />
+      <geometry>
+        <box size="0.06 0.04 0.02" />
+      </geometry>
+      <material name="orange" />
+    </visual>
+  </link>
+
+  <link name="sensor1/os_sensor">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" />
+      <geometry>
+        <cylinder length="0.07" radius="0.05" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+  </link>
+
+  <link name="sensor2/os_sensor">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" />
+      <geometry>
+        <cylinder length="0.07" radius="0.05" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+  </link>
+
+  <link name="right_camera">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" />
+      <geometry>
+        <box size="0.05 0.05 0.02" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+  </link>
+
+  <link name="left_camera">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" />
+      <geometry>
+        <box size="0.05 0.05 0.02" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+  </link>
+
+
+  <link name="base_link" />
+
+  <joint name="imu_link_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="imu" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+
+  <joint name="horz_link_joint" type="fixed">
+    <parent link="imu" />
+    <child link="sensor1/os_sensor" />
+    <origin xyz="-0.05 0. 0.055" rpy="0. 0. 0." />
+  </joint>
+
+  <joint name="vert_link_joint" type="fixed">
+    <parent link="imu" />
+    <child link="sensor2/os_sensor" />
+    <origin xyz="-0.55 0.03 0.05" rpy="1.5708 0 3.14159" />
+  </joint>
+
+  <joint name="right_camera_link_joint" type="fixed">
+    <parent link="imu" />
+    <child link="right_camera" />
+    <origin xyz="0.00519443 0.1347802 0.01465067" rpy="1.55606 0.012051 1.58996" />
+  </joint>
+
+  <joint name="left_camera_link_joint" type="fixed">
+    <parent link="imu" />
+    <child link="left_camera" />
+    <origin xyz="0.00552943 -0.12431302 0.01614686" rpy="1.55763 0.00201407 1.54896" />
+  </joint>
+</robot>

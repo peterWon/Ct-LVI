@@ -1,0 +1,161 @@
+%YAML:1.0
+
+enable_debug: false
+optimize_lvi_together: false
+
+# For CalibParamManager
+# optimization
+gyro_weight: 1
+accel_weight: 1
+imu_ba_weight: 1
+imu_bg_weight: 1
+
+imu_pos_weight: 1.
+imu_vel_weight: 1.
+imu_rot_weight: 1.
+imu_pos_weight_li: 1.
+imu_vel_weight_li: 1.
+imu_rot_weight_li: 1.
+imu_pos_weight_vi: 1.
+imu_vel_weight_vi: 1.
+imu_rot_weight_vi: 1.
+
+cam_uv_weight: 50.  
+cam_rot_weight: 50.
+cam_pos_weight: 20.
+
+lidar_weight: 30.
+
+lidar_rot_weight: 50.0
+lidar_pos_weight: 30.0
+
+window_length: 1.0
+imu_excite_threshold: 0.25
+# gravity: [0., 0., 9.7940]
+gravity: [0., 0., 9.805]
+gravity_norm: -9.805
+g_norm_for_debug: -9.805
+vio_time_window: 0.5
+outlier_ratio_to_lock: 1.0
+knot_space: 0.1
+
+enable_imu_orientation: false
+enable_imu_interpolated_pose: false
+enable_imu_predicted_pose: false
+
+enable_depth_assiciation: false
+
+num_anchor: 30
+sample_num: 5
+num_bins: 180
+max_cnt: 150
+
+# feature tracking
+window_size: 10
+n_grid_rows: 8
+n_grid_cols: 8
+
+visual_depth_lower_bound: 0.5
+visual_depth_upper_bound: 100.
+
+# if the reprojection error of this observation is larger than this threshold, it would be regarded as an outlier which to be removed or reweighted.
+outlier_ratio_threshold_to_reset: 1.0
+reproject_outlier_threshold: 0.05
+remove_outlier: false
+reweight_outlier: true
+# the new weight of this observation would be cam_uv_weight * reweight_outlier_scale
+reweight_outlier_scale: 0.05
+xy_movement_to_enable_vio: 0.7
+start_movement_excitation: 0.5
+
+gyro_bias_uppper_bound: 0.3
+acce_bias_uppper_bound: 0.5
+
+accel_excite_threshold: 0.25
+gyro_excite_threshold: 0.25 
+
+# set zero to disable random dropping scans
+# drop scans for testing degeneration scenario
+random_drop_num: 0
+visual_terms_number: 500
+ndt_resolution: 1.0
+
+# max time of ceres solver for LVI optimization
+max_time_cost: 0.08
+
+### VIRAL ###
+time_offset_lidar: 0.
+# time_offset_camera: -0.0199575325817
+time_offset_camera: 0.
+
+extrinsic_LtoI:
+ Trans: [-0.0353649, -0.205563, 0.078487]
+ Rot: [0.992814, -0.102509, -0.061736,
+       0.102917, 0.994684, 0.00344532,
+       0.0610547, -0.00977423, 0.998087]
+
+extrinsic_CtoI:
+ Trans: [0.06490996, 0.02914534, -0.01390249]
+ Rot: [0.01548485, -0.00556021,  0.99986464, 
+       -0.99978872, -0.01360522,  0.01540802,
+       0.0135177,  -0.99989199, -0.00576971]
+
+mask: ""
+image_sampling_ratio: 0.5
+model_type:   PINHOLE
+camera_name:  left-camera
+distortion_model: radial-tangential
+image_width: 1280
+image_height: 720
+distortion_parameters:
+   k1: -0.0397646985948
+   k2: 0.0082944041788
+   p1: -0.0043042199686
+   p2: -0.0001040279967
+   k3: 0.00030608999077
+projection_parameters:
+   fx: 530.174987792968
+   fy: 530.094970703125
+   cx: 635.119995117187
+   cy: 356.522003173828
+
+seg_threshold: 0.1
+seg_inlier_ratio: 0.9
+
+VINS:
+  focal_length: 460.
+  init_depth: 3.
+  
+  #feature traker paprameters
+  max_cnt: 120            # max feature number in feature tracking
+  min_dist: 20            # min distance between two features 
+
+  #optimization parameters
+  solver_time: 0.04  # max solver itration time (ms), to guarantee real time
+  num_iterations: 8   # max solver itrations, to guarantee real time
+  min_parallax: 15.0 # keyframe selection threshold (pixel)
+
+  #imu parameters       The more accurate parameters you provide, the better performance
+  acc_n: 0.02          # accelerometer measurement noise standard deviation. #0.2   0.04
+  gyr_n: 0.01        # gyroscope measurement noise standard deviation.     #0.05  0.004
+  acc_w: 0.002         # accelerometer bias random work noise standard deviation.  #0.02
+  gyr_w: 4.0e-5       # gyroscope bias random work noise standard deviation.     #4.0e-5
+  g_norm: 9.805     # gravity magnitude
+  
+  bias_acc_threshold: 0.2
+  bias_gyr_threshold: 0.2
+
+  #unsynchronization parameters
+  estimate_td: 0                      # online estimate time offset between camera and imu
+  td: 0.0                             # initial value of time offset. unit: s. readed image clock + td = real image clock (IMU clock)
+
+  #rolling shutter parameters
+  rolling_shutter: 0                  # 0: global shutter camera, 1: rolling shutter camera
+  tr: 0               # unit: s. rolling shutter read out time per frame (from data sheet). 
+  enable_state_factor: false
+  fix_depth_associated: false
+  weight_pos: 30
+  weight_rot: 30
+  weight_vel: 10
+  weight_ba: 5
+  weight_bg: 5
