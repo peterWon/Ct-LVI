@@ -31,6 +31,8 @@
 
   - HD dataset: [link](https://pan.baidu.com/s/1G8JRS38VhW8zwjtxNrXiWw), pwd: bsqi
 
+- Set the file path parameters (TRAJECTORY_BUILDER_3D.lvio_config_filename, POSE_GRAPH.camera_intrinsics_filename, and POSE_GRAPH.dbow_voc_filename) of the config file ([tongji.lua](src/ctlvi/config/tongji.lua)) 
+
 - ```roslaunch ctlvi demo_ctlvi_tongji.launch bag_filename:=BAG_FILE_PATH```
   where BAG_FILE_PATH is the full path of the downloaded bag file in your device
 
@@ -47,6 +49,8 @@
 
 - The dataset is available online at [NTU-VIRAL](https://ntu-aris.github.io/ntu_viral_dataset/)
 
+- Set the file path parameters (TRAJECTORY_BUILDER_3D.lvio_config_filename, POSE_GRAPH.camera_intrinsics_filename, and POSE_GRAPH.dbow_voc_filename) of the config file ([viral.lua](src/ctlvi/config/viral.lua))
+
 -     ```roslaunch ctlvi demo_ctlvi_viral.launch bag_filename:=BAG_FILE_PATH```
   where BAG_FILE_PATH is the full path of the downloaded bag file in your device
   
@@ -55,9 +59,6 @@
   <div align="center">
       <img src="img/VIRAL-RESULT.png">  
   </div>
-  
-  
-  
   
   
 #### Your own data
@@ -82,4 +83,4 @@
 - The authors of [CLINS](https://github.com/APRIL-ZJU/clins)
 
 ### License
-```Following the livenses of the above acknowledged repositories.```
+```Following the licenses of the above acknowledged repositories.```
